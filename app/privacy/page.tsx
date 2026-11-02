@@ -1,0 +1,3 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "Privacy" };
+export default function Privacy() { return <main className="legal wrap"><div className="section-kicker">THE FINE PRINT</div><h1>Privacy<span className="coral">.</span></h1><p>This is placeholder copy, not a complete privacy policy. Replace it with a policy reviewed for your business, location, hosting, analytics, and email provider before launching.</p><h2>Contact enquiries</h2><p>Information submitted through the contact form is sent to the studio via Resend when configured. Please do not send sensitive information through the form.</p></main>; }

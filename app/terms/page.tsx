@@ -1,0 +1,3 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "Terms" };
+export default function Terms() { return <main className="legal wrap"><div className="section-kicker">THE FINE PRINT</div><h1>Terms<span className="coral">.</span></h1><p>This is placeholder copy, not a complete set of terms. Replace it with terms reviewed for your business and jurisdiction before launching.</p><h2>Website content</h2><p>Some project examples and testimonials are fictional; pricing and contact details are illustrative. Replace placeholder content before publication.</p></main>; }

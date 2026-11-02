@@ -1,0 +1,27 @@
+export type Project = {
+  slug: string;
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;
+  challenge: string;
+  approach: string;
+  solution: string;
+  result: string;
+  metric: string;
+  stack: string[];
+  color: string;
+  isClient?: boolean;
+  website?: string;
+  imageExtension?: "png";
+};
+
+export const projects: Project[] = [
+  { slug: "scent-vault", name: "Scent Vault", category: "Retail", tagline: "The world of haute parfumerie, beautifully catalogued.", description: "A searchable visual catalogue for an independent fragrance business.", challenge: "Make a large collection of fragrances easy to explore while giving the catalogue a distinctive, considered presentation.", approach: "Bring the collection together in an editorial experience, organized by perfume house and designed around visual discovery.", solution: "A responsive fragrance catalogue with search, category filters, product imagery, and bookmarks for favorite finds.", result: "The live catalogue presents 447 fragrances across 68 perfume houses, with tools to help visitors browse the collection.", metric: "447 fragrances / 68 houses", stack: ["HTML", "CSS", "JavaScript", "Netlify"], color: "#f2ede4", isClient: true, website: "https://perfvaultspidey.netlify.app/", imageExtension: "png" },
+  { slug: "goodroot", name: "Goodroot", category: "Food & drink", tagline: "A little more good in every day.", description: "A brighter digital home for a plant-powered pantry.", challenge: "A growing pantry brand needed to make everyday nutrition feel less like a chore and more like a ritual.", approach: "We paired an optimistic identity with a straightforward path from discovery to checkout.", solution: "A colorful storefront built around ingredient stories, curated bundles, and a frictionless mobile experience.", result: "A concept designed to make browsing feel as good as the products themselves.", metric: "+38% imagined conversion", stack: ["Next.js", "Shopify", "Motion"], color: "#d8e6a7" },
+  { slug: "stillwell", name: "Stillwell", category: "Wellness", tagline: "Make room for feeling better.", description: "A calmer way to find the care you need.", challenge: "A modern wellness practice needed an approachable online experience that put people at ease.", approach: "We made space for clear information, reassuring photography, and a simple booking journey.", solution: "An accessible, editorial website that helps visitors understand services and confidently book a first visit.", result: "A concept that brings a more human touch to finding care.", metric: "+52% imagined bookings", stack: ["Next.js", "Sanity", "Calendly"], color: "#edc9bd" },
+  { slug: "common-ground", name: "Common Ground", category: "Hospitality", tagline: "Good coffee. Better company.", description: "A neighborhood cafe with a story worth sharing.", challenge: "A beloved local cafe wanted its online presence to feel as welcoming as its corner table.", approach: "We leaned into the character of the neighborhood with expressive type and an easy-to-use menu.", solution: "A warm, mobile-first destination for discovering the menu, finding the cafe, and planning a visit.", result: "A concept that turns a quick search into an invitation to stay awhile.", metric: "+41% imagined visits", stack: ["Next.js", "Contentful", "Vercel"], color: "#e8b56f" },
+  { slug: "northstar", name: "Northstar", category: "Technology", tagline: "A clearer way forward.", description: "Making a complex product feel remarkably simple.", challenge: "A planning platform needed to explain its value to busy teams without adding to the noise.", approach: "We distilled the product story into a clear narrative, supported by useful visual demonstrations.", solution: "A conversion-minded marketing site with a distinctive identity and modular content system.", result: "A concept that makes the next step feel obvious.", metric: "+64% imagined enquiries", stack: ["Next.js", "Tailwind CSS", "HubSpot"], color: "#bacde2" },
+  { slug: "form-and-field", name: "Form & Field", category: "Lifestyle", tagline: "Objects for a life well lived.", description: "A considered storefront for everyday objects.", challenge: "An independent homewares label needed a digital experience that reflected the care behind its products.", approach: "We created a quiet visual rhythm that lets materials, details, and craftsmanship do the talking.", solution: "An elegant commerce experience with thoughtful product storytelling and intuitive collections.", result: "A concept designed to make the everyday feel exceptional.", metric: "+29% imagined order value", stack: ["Shopify", "Next.js", "Klaviyo"], color: "#d4c7b5" },
+  { slug: "wayfinder", name: "Wayfinder", category: "Travel", tagline: "Go somewhere meaningful.", description: "A more thoughtful way to get away.", challenge: "A boutique travel company needed to turn its personal approach into an inspiring digital experience.", approach: "We combined destination-led storytelling with a remarkably simple enquiry flow.", solution: "An immersive travel website that brings each itinerary to life and invites a real conversation.", result: "A concept made for curious travelers and better beginnings.", metric: "+46% imagined enquiries", stack: ["Next.js", "Sanity", "Vercel"], color: "#b5d2c8" },
+];
