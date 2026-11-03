@@ -2,8 +2,7 @@ export const site = {
   name: "roz",
   tagline: "Thoughtful websites. Remarkable results.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
-  email: "hello@example.com",
-  phone: "+1 (555) 010-0142",
+  email: "roz.enquire@gmail.com",
   location: "Bengaluru, India · Working everywhere",
   description: "Independent digital studio making thoughtful websites for good businesses.",
 };
@@ -19,9 +18,6 @@ export const services = [
 
 export const testimonials = [
   { quote: "Work done was quick and easy, process was very effective, very professional group of people working together to provide me a great experience for my business", name: "Vidhushi Sharma", role: "Scent Vault", avatar: "", isClient: true },
-  { quote: "They took the jumble of ideas in our heads and turned it into something that finally felt like us. The whole process felt refreshingly human.", name: "Maya Bennett", role: "Founder, Goodroot", avatar: "/avatar-maya.svg" },
-  { quote: "Thoughtful at every step, right down to the little details. Our new site makes it so much easier for people to understand what we do.", name: "Jordan Ellis", role: "Co-founder, Northstar", avatar: "/avatar-jordan.svg" },
-  { quote: "It feels like our space, just online. We couldn't be happier with how much personality they managed to bring to it.", name: "Alex Rivera", role: "Owner, Common Ground", avatar: "/avatar-alex.svg" },
 ];
 
 export const faqs = [
@@ -33,7 +29,6 @@ export const faqs = [
 ];
 
 export const plans = [
-  { name: "The essentials", price: "From $3,500", description: "For a brilliant first impression.", features: ["Strategy & creative direction", "Up to 5 custom pages", "Responsive development", "Launch support"] },
-  { name: "The whole thing", price: "From $7,500", description: "For businesses ready to grow.", features: ["Everything in Essentials", "Up to 10 custom pages", "Content management system", "SEO foundations & analytics"], featured: true },
-  { name: "Something else", price: "Let's talk", description: "For the wonderfully specific.", features: ["E-commerce & web apps", "Custom integrations", "Ongoing creative partnership", "A scope made for you"] },
+  { name: "Base", price: "From Rs. 30,000", description: "A thoughtful, polished website to get you going.", features: ["Strategy & creative direction", "Up to 5 custom pages", "Responsive design & development", "Launch support"] },
+  { name: "Premium", price: "From Rs. 75,000", description: "A fuller digital experience, built to grow with you.", features: ["Everything in Base", "Up to 10 custom pages", "CMS or e-commerce setup", "SEO foundations & analytics"], featured: true },
 ];

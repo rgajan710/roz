@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { site } from "@/content/site";
 
 export async function POST(request: Request) {
   if (Number(request.headers.get("content-length") || 0) > 16000) return NextResponse.json({ error: "Your message is too long." }, { status: 413 });
@@ -13,11 +14,15 @@ export async function POST(request: Request) {
   const service = typeof data.service === "string" ? data.service.slice(0, 100) : "Not specified";
   const budget = typeof data.budget === "string" ? data.budget.slice(0, 100) : "Not specified";
   if (!name || name.length > 100 || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 10 || message.length > 5000) return NextResponse.json({ error: "Please provide your name, a valid email, and a message of at least 10 characters." }, { status: 400 });
-  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_TO_EMAIL || !process.env.CONTACT_FROM_EMAIL) return NextResponse.json({ error: "Online enquiries aren't configured yet. Please email us directly instead." }, { status: 503 });
+  const recipient = process.env.CONTACT_TO_EMAIL?.trim() || site.email;
+  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_FROM_EMAIL) return NextResponse.json({ error: "Online enquiries aren't configured yet. Please email us directly instead." }, { status: 503 });
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { error } = await resend.emails.send({ from: process.env.CONTACT_FROM_EMAIL, to: process.env.CONTACT_TO_EMAIL, replyTo: email, subject: `New project enquiry from ${name.replace(/[\r\n]/g, " ")}`, text: `Name: ${name}\nEmail: ${email}\nService: ${service}\nBudget: ${budget}\n\n${message}` });
+    const { error } = await resend.emails.send({ from: process.env.CONTACT_FROM_EMAIL, to: recipient, replyTo: email, subject: `New project enquiry from ${name.replace(/[\r\n]/g, " ")}`, text: `Name: ${name}\nEmail: ${email}\nService: ${service}\nBudget: ${budget}\n\n${message}` });
     if (error) throw new Error(error.message);
     return NextResponse.json({ ok: true });
-  } catch { return NextResponse.json({ error: "We couldn't send your message. Please email us directly instead." }, { status: 502 }); }
+  } catch (error) {
+    console.error("Contact form email delivery failed", error);
+    return NextResponse.json({ error: "We couldn't send your message. Please email us directly instead." }, { status: 502 });
+  }
 }
