@@ -1,0 +1,42 @@
+import type { CSSProperties } from "react";
+
+export const motionConfig = {
+  ease: [0.22, 1, 0.36, 1] as const,
+  revealDuration: 0.9,
+  pageDuration: 0.45,
+  enterDelay: 0.15,
+  transition: 0.3,
+  quickTransition: 0.2,
+  buttonTransition: 0.25,
+  fadeTransition: 0.4,
+  imageTransition: 0.6,
+  loaderDuration: 1.2,
+  loaderDelay: 0.5,
+  logoDuration: 0.7,
+  marqueeDuration: 26,
+  beamDuration: 4,
+  counterDuration: 1100,
+  smoothLerp: 0.1,
+  cardTilt: 4,
+  dpr: [1, 1.35] as [number, number],
+  sceneDelay: 3000,
+  sequenceFrames: 36,
+  sequenceScrub: 0.5,
+  scrambleDuration: 700,
+} as const;
+
+export const motionStyles: CSSProperties & Record<`--${string}`, string> = {
+  "--motion-reveal": `${motionConfig.revealDuration}s`,
+  "--motion-page": `${motionConfig.pageDuration}s`,
+  "--motion-enter-delay": `${motionConfig.enterDelay}s`,
+  "--motion-transition": `${motionConfig.transition}s`,
+  "--motion-quick": `${motionConfig.quickTransition}s`,
+  "--motion-button": `${motionConfig.buttonTransition}s`,
+  "--motion-fade": `${motionConfig.fadeTransition}s`,
+  "--motion-image": `${motionConfig.imageTransition}s`,
+  "--motion-loader": `${motionConfig.loaderDuration}s`,
+  "--motion-loader-delay": `${motionConfig.loaderDelay}s`,
+  "--motion-logo": `${motionConfig.logoDuration}s`,
+  "--motion-marquee": `${motionConfig.marqueeDuration}s`,
+  "--motion-beam": `${motionConfig.beamDuration}s`,
+};

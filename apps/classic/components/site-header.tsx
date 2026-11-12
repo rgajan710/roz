@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { site } from "@/content/site";
+import { Wordmark } from "@roz/brand/wordmark";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,7 @@ export function SiteHeader() {
   }
 
   return <header className="site-header">
-    <Link href="/" className="wordmark" aria-label={`${site.name} home`}>{site.name}<span className="wordmark-dot">.</span></Link>
+    <Link href="/" className="wordmark" aria-label={`${site.name} home`}><Wordmark name={site.name} /></Link>
     <nav className={open ? "main-nav is-open" : "main-nav"} aria-label="Main navigation">
       <Link href="/#work" onClick={() => setOpen(false)}>Work</Link><Link href="/#services" onClick={() => setOpen(false)}>What we do</Link><Link href="/#about" onClick={() => setOpen(false)}>How we work</Link>
       <Link className="nav-cta" href="/#contact" onClick={() => setOpen(false)}>Let&apos;s talk <ArrowUpRight size={16} aria-hidden="true" /></Link>

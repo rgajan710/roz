@@ -1,0 +1,14 @@
+{
+  "name": "@roz/brand",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./fonts": "./fonts.ts",
+    "./tokens.css": "./tokens.css",
+    "./wordmark": "./wordmark.tsx"
+  },
+  "peerDependencies": {
+    "next": "16.4.4",
+    "react": "19.3.0"
+  }
+}

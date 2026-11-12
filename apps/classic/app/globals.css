@@ -1,7 +1,6 @@
 @import "tailwindcss";
+@import "@roz/brand/tokens.css";
 
-:root { --paper: #f8f8f3; --ink: #20241f; --muted: #656b63; --line: #d7dad0; --coral: #e85f4c; --lime: #dce99a; --soft: #eff0e9; --white: #fff; }
-html[data-theme="dark"] { --paper: #20241f; --ink: #f4f4eb; --muted: #c1c6bb; --line: #50574d; --soft: #2d342d; --white: #30362e; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans), sans-serif; font-size: 15px; line-height: 1.6; }
