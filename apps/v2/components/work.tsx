@@ -282,7 +282,7 @@ export function Work() {
       <div className="work-intro">
         <div className="section-eyebrow">
           <span className="status-dot" />
-          <span>03 / 06 &middot; SELECTED ARTIFACTS</span>
+          <span>04 / 09 &middot; SELECTED ARTIFACTS</span>
         </div>
         <div className="work-intro-split">
           <h2 id="work-heading" className="section-title">

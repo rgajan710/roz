@@ -42,6 +42,13 @@ export function SiteNav() {
 
         <nav className={`nav-links${open ? " is-open" : ""}`} aria-label="Main navigation">
           <a
+            href="#about"
+            onClick={() => { setOpen(false); soundFX.playClick(); }}
+            onMouseEnter={() => soundFX.playHover()}
+          >
+            Studio
+          </a>
+          <a
             href="#work"
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}
@@ -54,6 +61,20 @@ export function SiteNav() {
             onMouseEnter={() => soundFX.playHover()}
           >
             Capabilities
+          </a>
+          <a
+            href="#process"
+            onClick={() => { setOpen(false); soundFX.playClick(); }}
+            onMouseEnter={() => soundFX.playHover()}
+          >
+            Process
+          </a>
+          <a
+            href="#faq"
+            onClick={() => { setOpen(false); soundFX.playClick(); }}
+            onMouseEnter={() => soundFX.playHover()}
+          >
+            FAQ
           </a>
 
           {/* Sound Experience Toggle Button */}

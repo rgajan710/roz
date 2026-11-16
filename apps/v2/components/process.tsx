@@ -80,7 +80,7 @@ export function Process() {
         <div className="process-header">
           <div className="section-eyebrow">
             <span className="status-dot" />
-            <span>05 / 07 &middot; EXECUTION BLUEPRINT</span>
+            <span>06 / 09 &middot; EXECUTION BLUEPRINT</span>
           </div>
           <div className="process-header-split">
             <h2 id="process-heading" className="section-title">

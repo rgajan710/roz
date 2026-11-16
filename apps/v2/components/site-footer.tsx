@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Wordmark } from "@roz/brand/wordmark";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -49,29 +50,64 @@ export function SiteFooter() {
         </a>
       </div>
 
-      <div className="footer-big-wordmark-wrap">
-        <a
-          href="#top"
-          className="footer-wordmark"
-          aria-label="Roz studio, back to top"
-          onMouseEnter={() => soundFX.playHover()}
-          onClick={() => soundFX.playClick()}
-        >
-          <Wordmark name="roz" />
-        </a>
+      <div className="footer-main-grid">
+        <div className="footer-brand-col">
+          <a
+            href="#top"
+            className="footer-wordmark"
+            aria-label="Roz studio, back to top"
+            onMouseEnter={() => soundFX.playHover()}
+            onClick={() => soundFX.playClick()}
+          >
+            <Wordmark name="roz" />
+          </a>
+          <p className="footer-tagline">
+            An independent digital studio crafting thoughtful websites, brand experiences, and commerce platforms for ambitious businesses worldwide.
+          </p>
+          <a
+            href="mailto:roz.enquire@gmail.com"
+            className="footer-email-link"
+            onMouseEnter={() => soundFX.playHover()}
+            onClick={() => soundFX.playClick()}
+          >
+            roz.enquire@gmail.com <ArrowUpRight size={14} aria-hidden="true" />
+          </a>
+        </div>
+
+        <div className="footer-links-col">
+          <h3 className="footer-col-title">Navigate</h3>
+          <ul className="footer-link-list">
+            <li><a href="#about" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Studio</a></li>
+            <li><a href="#work" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Selected Work</a></li>
+            <li><a href="#studio" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Capabilities</a></li>
+            <li><a href="#process" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Process</a></li>
+            <li><a href="#faq" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>FAQ</a></li>
+            <li><a href="#contact" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Start a Project</a></li>
+          </ul>
+        </div>
+
+        <div className="footer-links-col">
+          <h3 className="footer-col-title">Studio</h3>
+          <ul className="footer-link-list">
+            <li><span className="footer-muted">Bengaluru, India</span></li>
+            <li><span className="footer-muted">Working worldwide</span></li>
+            <li><span className="footer-muted">Strategy · Design · Code</span></li>
+            <li><span className="footer-muted">Accepting Q2/Q3 2026</span></li>
+          </ul>
+        </div>
+
+        <div className="footer-links-col">
+          <h3 className="footer-col-title">Legal</h3>
+          <ul className="footer-link-list">
+            <li><Link href="/privacy" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Privacy Policy</Link></li>
+            <li><Link href="/terms" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Terms of Use</Link></li>
+          </ul>
+        </div>
       </div>
 
       <div className="footer-bottom">
         <span>&copy; {new Date().getFullYear()} ROZ LAB &middot; BESPOKE DIGITAL ARCHITECTURE</span>
         <span className="footer-loc">12.9716&deg; N, 77.5946&deg; E &mdash; BENGALURU &middot; WORLDWIDE</span>
-        <a
-          href="mailto:roz.enquire@gmail.com"
-          className="footer-email-link"
-          onMouseEnter={() => soundFX.playHover()}
-          onClick={() => soundFX.playClick()}
-        >
-          roz.enquire@gmail.com <ArrowUpRight size={14} aria-hidden="true" />
-        </a>
       </div>
     </footer>
   );

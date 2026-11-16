@@ -56,7 +56,7 @@ export function Services() {
       <div className="services-header">
         <div className="section-eyebrow">
           <span className="status-dot" />
-          <span>04 / 06 &middot; DISCIPLINES &amp; CAPABILITIES</span>
+          <span>05 / 09 &middot; DISCIPLINES &amp; CAPABILITIES</span>
         </div>
         <div className="services-header-split">
           <h2 id="services-heading" className="section-title">

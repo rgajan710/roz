@@ -6,10 +6,13 @@ import { soundFX } from "@/lib/audio";
 const chapters = [
   { id: "top", num: "01", label: "ARCHIVE" },
   { id: "manifesto", num: "02", label: "DOCTRINE" },
-  { id: "work", num: "03", label: "ARTIFACTS" },
-  { id: "studio", num: "04", label: "DISCIPLINES" },
-  { id: "process", num: "05", label: "METHODOLOGY" },
-  { id: "contact", num: "06", label: "INQUIRY" },
+  { id: "about", num: "03", label: "STUDIO" },
+  { id: "work", num: "04", label: "ARTIFACTS" },
+  { id: "studio", num: "05", label: "DISCIPLINES" },
+  { id: "process", num: "06", label: "METHOD" },
+  { id: "results", num: "07", label: "PROOF" },
+  { id: "faq", num: "08", label: "FAQ" },
+  { id: "contact", num: "09", label: "INQUIRY" },
 ];
 
 export function ChapterNav() {

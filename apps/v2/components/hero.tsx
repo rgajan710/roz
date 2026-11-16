@@ -119,7 +119,7 @@ export function Hero() {
       </div>
 
       <div className="hero-footer-bar">
-        <span>01 / 06 &mdash; ARCHIVE</span>
+        <span>01 / 09 &mdash; ARCHIVE</span>
         <span>SCROLL TO EXPLORE &darr;</span>
         <span>12.9716&deg; N, 77.5946&deg; E</span>
       </div>

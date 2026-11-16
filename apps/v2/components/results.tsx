@@ -60,13 +60,13 @@ export function Results() {
   }, []);
 
   return (
-    <section ref={section} className="proof-section" aria-labelledby="proof-heading">
+    <section id="results" ref={section} className="proof-section" aria-labelledby="proof-heading">
       <div className="proof-container">
         {/* Testimonial Quote Header */}
         <div className="proof-quote-wrapper">
           <div className="section-eyebrow">
             <span className="status-dot" />
-            <span>05 / 06 &middot; CLIENT PERSPECTIVE</span>
+            <span>07 / 09 &middot; CLIENT PERSPECTIVE</span>
           </div>
           <blockquote className="proof-blockquote">
             &ldquo;Work done was quick and easy, process was very effective &mdash; very professional group of people working together to provide me a great experience for my business.&rdquo;

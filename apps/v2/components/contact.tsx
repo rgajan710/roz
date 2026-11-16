@@ -72,7 +72,7 @@ export function Contact() {
         <div className="contact-info-col">
           <div className="section-eyebrow">
             <span className="status-dot" />
-            <span>07 / 07 &middot; INITIATION &amp; INQUIRY</span>
+            <span>09 / 09 &middot; INITIATION &amp; INQUIRY</span>
           </div>
           <h2 id="contact-heading" className="contact-headline">
             Let&apos;s build<br />

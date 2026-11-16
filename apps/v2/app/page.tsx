@@ -7,6 +7,9 @@ import { Work } from "@/components/work";
 import { Services } from "@/components/services";
 import { Process } from "@/components/process";
 import { Results } from "@/components/results";
+import { About } from "@/components/about";
+import { VisualGallery } from "@/components/visual-gallery";
+import { FAQ } from "@/components/faq";
 import { Contact } from "@/components/contact";
 import { SiteFooter } from "@/components/site-footer";
 import { MotionShell } from "@/components/motion-shell";
@@ -23,10 +26,13 @@ export default function Home() {
         <Hero />
         <TechMarquee />
         <Manifesto />
+        <About />
+        <VisualGallery />
         <Work />
         <Services />
         <Process />
         <Results />
+        <FAQ />
         <Contact />
       </main>
       <SiteFooter />

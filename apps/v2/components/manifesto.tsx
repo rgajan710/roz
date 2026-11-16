@@ -116,7 +116,7 @@ export function Manifesto() {
       <div className="manifesto-stage">
         <div className="section-eyebrow">
           <span className="status-dot" />
-          <span>02 / 06 &middot; THE ROZ DOCTRINE</span>
+          <span>02 / 09 &middot; THE ROZ DOCTRINE</span>
         </div>
 
         <div ref={wordsRef} className="manifesto-text-wrap">
@@ -159,7 +159,7 @@ export function Manifesto() {
         </div>
 
         <div className="manifesto-footer-line">
-          <span>02 / 06 &mdash; DOCTRINE</span>
+          <span>02 / 09 &mdash; DOCTRINE</span>
           <span>BENGALURU, INDIA &mdash; WORLDWIDE</span>
         </div>
       </div>
