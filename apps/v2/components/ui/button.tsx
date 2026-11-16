@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva("button", {
-  variants: { variant: { light: "button-light", dark: "button-dark", outline: "button-outline" } },
+  variants: { variant: { light: "button-light", dark: "button-dark", outline: "button-outline", coral: "button-coral" } },
   defaultVariants: { variant: "light" },
 });
 

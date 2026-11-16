@@ -1,49 +1,128 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { motionConfig } from "@/lib/motion";
+import { soundFX } from "@/lib/audio";
 import { supportsRichMotion } from "@/lib/device";
-import { ScrambleText } from "@/components/scramble-text";
-
-const HeroScene = dynamic(() => import("@/components/hero-scene"), { ssr: false });
 
 export function Hero() {
-  const section = useRef<HTMLElement>(null);
-  const [showScene, setShowScene] = useState(false);
-  const [visible, setVisible] = useState(true);
+  const heroRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const node = section.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
-    observer.observe(node);
-    if (supportsRichMotion()) {
-      const timer = window.setTimeout(() => setShowScene(true), motionConfig.sceneDelay);
-      return () => { window.clearTimeout(timer); observer.disconnect(); };
-    }
-    return () => observer.disconnect();
+    if (!supportsRichMotion()) return;
+    const hero = heroRef.current;
+    const content = contentRef.current;
+    if (!hero || !content) return;
+
+    let cleanup: (() => void) | undefined;
+
+    void Promise.all([
+      import("gsap"),
+      import("gsap/ScrollTrigger"),
+    ]).then(([{ gsap }, { ScrollTrigger }]) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero text gently recedes, tracks, and fades as scroll begins into Chapter 2
+      const st = ScrollTrigger.create({
+        trigger: hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        onUpdate: (self) => {
+          if (content) {
+            const p = self.progress;
+            content.style.transform = `translate3d(0, ${p * 120}px, 0) scale(${1 - p * 0.08})`;
+            content.style.opacity = `${Math.max(1 - p * 1.6, 0)}`;
+          }
+        },
+      });
+
+      cleanup = () => {
+        st.kill();
+      };
+    });
+
+    return () => cleanup?.();
   }, []);
 
-  return <section id="top" ref={section} className="hero">
-    <div className="hero-visual" aria-hidden="true">
-      <div className="hero-orb" />
-      {showScene && visible && <HeroScene />}
-      <div className="hero-visual-label"><span>FORM / FUNCTION / FEELING</span><span>01 — 04</span></div>
-    </div>
-    <div className="hero-content">
-      <motion.div className="hero-reveal" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: motionConfig.revealDuration, ease: motionConfig.ease }}>
-        <p className="eyebrow"><span className="status-dot" /> A LITTLE STUDIO FOR BIG IDEAS <span>✳</span> EST. FOR WHAT&apos;S NEXT</p>
-        <h1>For ideas<br /><em>with</em><br /><ScrambleText text="a pulse" /><span className="coral">.</span></h1>
-        <div className="hero-bottom">
-          <p>Digital experiences with a little more feeling — and a lot more purpose.</p>
-          <Button asChild><a href="#work">Explore our work <ArrowUpRight size={18} aria-hidden="true" /></a></Button>
+  return (
+    <section id="top" ref={heroRef} className="hero">
+      <div className="hero-radial-glow" aria-hidden="true" />
+
+      <div ref={contentRef} className="hero-content">
+        <div className="hero-inner">
+          <div className="hero-eyebrow">
+            <span className="status-dot" />
+            <span>INDEPENDENT DIGITAL STUDIO</span>
+            <span className="hero-sep">/</span>
+            <span>STRATEGY &middot; DESIGN &middot; CODE</span>
+            <span className="hero-sep">/</span>
+            <span className="hero-studio-pill">● 4 FLAGSHIPS LIVE</span>
+          </div>
+
+          <h1 className="hero-headline">
+            Digital experiences.<br />
+            <em>Crafted with intention</em><span className="coral">.</span>
+          </h1>
+
+          <div className="hero-meta">
+            <p className="hero-desc">
+              We architect bespoke digital platforms, e-commerce storefronts, and brand identities for ambitious companies worldwide.
+            </p>
+            <div className="hero-actions">
+              <Button
+                asChild
+                variant="light"
+                onMouseEnter={() => soundFX.playHover()}
+                onClick={() => soundFX.playClick()}
+              >
+                <a href="#work">
+                  Selected Work <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                onMouseEnter={() => soundFX.playHover()}
+                onClick={() => soundFX.playClick()}
+              >
+                <a href="#contact">
+                  Start an Inquiry
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          {/* Color-accented Flagship Quick Links */}
+          <div className="hero-flagship-chips">
+            <span className="flagship-chip-label">FLAGSHIP CASES:</span>
+            <a href="#work" className="flagship-chip" onClick={() => soundFX.playClick()}>
+              <span className="chip-dot" style={{ background: "#c59b4c" }} />
+              <span>Scent Vault</span>
+            </a>
+            <a href="#work" className="flagship-chip" onClick={() => soundFX.playClick()}>
+              <span className="chip-dot" style={{ background: "#22c55e" }} />
+              <span>OUTLAND</span>
+            </a>
+            <a href="#work" className="flagship-chip" onClick={() => soundFX.playClick()}>
+              <span className="chip-dot" style={{ background: "#f59e0b" }} />
+              <span>sunroom</span>
+            </a>
+            <a href="#work" className="flagship-chip" onClick={() => soundFX.playClick()}>
+              <span className="chip-dot" style={{ background: "#c25e3e" }} />
+              <span>FORME</span>
+            </a>
+          </div>
         </div>
-      </motion.div>
-    </div>
-    <div className="hero-index"><span>SCROLL TO EXPLORE</span><ArrowDownRight size={18} aria-hidden="true" /><span>© ROZ STUDIO</span></div>
-  </section>;
+      </div>
+
+      <div className="hero-footer-bar">
+        <span>01 / 06 &mdash; ARCHIVE</span>
+        <span>SCROLL TO EXPLORE &darr;</span>
+        <span>12.9716&deg; N, 77.5946&deg; E</span>
+      </div>
+    </section>
+  );
 }

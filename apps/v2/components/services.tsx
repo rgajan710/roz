@@ -1,28 +1,146 @@
-import { ArrowUpRight, Braces, Compass, Layers3, Sparkles } from "lucide-react";
-import { MagneticLink } from "@/components/magnetic-link";
-import { SpotlightCard } from "@/components/spotlight-card";
+"use client";
 
-const services = [
-  { number: "01", name: "Strategy & identity", text: "The clear thinking and creative direction that make your brand unmistakably yours.", icon: Compass },
-  { number: "02", name: "Digital design", text: "Distinctive, intuitive experiences that make people want to stay a little longer.", icon: Layers3 },
-  { number: "03", name: "Development", text: "Fast, accessible websites built with care and ready for what comes next.", icon: Braces },
-  { number: "04", name: "E-commerce & care", text: "Thoughtful storefronts and ongoing support for the businesses behind them.", icon: Sparkles },
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { soundFX } from "@/lib/audio";
+
+const capabilities = [
+  {
+    num: "01",
+    title: "Brand Strategy & Visual Architecture",
+    badge: "STRATEGY & IDENTITY",
+    color: "#3b82f6",
+    badgeBg: "rgba(59, 130, 246, 0.1)",
+    summary: "Clear market positioning, creative direction, and visual identity systems that give your company a distinct, unforgettable presence.",
+    tags: ["Positioning", "Visual Identity", "Typography Systems", "Art Direction"],
+    previewImg: "/work/forme-flagship.webp",
+  },
+  {
+    num: "02",
+    title: "Digital Product & Experience Design",
+    badge: "PRODUCT & UI/UX",
+    color: "#8b5cf6",
+    badgeBg: "rgba(139, 92, 246, 0.1)",
+    summary: "Intuitive, high-converting digital interfaces engineered to captivate audiences and inspire confidence across every touchpoint.",
+    tags: ["UI / UX Architecture", "Design Systems", "Interactive Prototyping", "Mobile First"],
+    previewImg: "/work/sunroom-flagship.webp",
+  },
+  {
+    num: "03",
+    title: "Creative Engineering & 3D WebGL",
+    badge: "3D & CREATIVE CODE",
+    color: "#ea452b",
+    badgeBg: "rgba(234, 69, 43, 0.1)",
+    summary: "Modern web applications powered by Next.js, Three.js, and custom GLSL shaders — delivering 60 FPS motion without compromising accessibility.",
+    tags: ["Next.js & React", "Three.js & WebGL", "GSAP & Motion", "Performance Auditing"],
+    previewImg: "/work/outland-flagship.webp",
+  },
+  {
+    num: "04",
+    title: "E-Commerce Flagships & Scaled Platforms",
+    badge: "COMMERCE ARCHITECTURE",
+    color: "#10b981",
+    badgeBg: "rgba(16, 185, 129, 0.1)",
+    summary: "Bespoke digital flagships and headless storefronts built for enduring reliability, frictionless checkout, and international scale.",
+    tags: ["Headless Commerce", "Shopify Plus", "Catalog Optimization", "Speed Optimization"],
+    previewImg: "/work/scent-vault-flagship.webp",
+  },
 ] as const;
 
 export function Services() {
-  return <section id="studio" className="services-section section-pad" aria-labelledby="services-heading">
-    <div className="services-intro">
-      <p className="section-kicker"><span className="status-dot" /> SMALL STUDIO. BIG FEELING.</p>
-      <h2 id="services-heading">We make the<br /><em>internet feel</em><br />a little more human<span className="coral">.</span></h2>
-      <div className="services-intro-bottom"><p>Thoughtful strategy, good design, and the kind of details you can feel. From the first conversation to the final click, we&apos;re in it with you.</p><MagneticLink href="#contact">Get to know us</MagneticLink></div>
-    </div>
-    <div className="service-grid">
-      {services.map(({ number, name, text, icon: Icon }) => <SpotlightCard key={number}>
-        <div className="service-card-top"><span>({number})</span><Icon size={22} strokeWidth={1.3} aria-hidden="true" /></div>
-        <div><h3>{name}</h3><p>{text}</p></div>
-        <ArrowUpRight className="service-arrow" size={18} aria-hidden="true" />
-      </SpotlightCard>)}
-    </div>
-    <div className="services-foot"><span>INDEPENDENT BY DESIGN</span><span>GOOD WORK FOR GOOD PEOPLE &nbsp; ✳</span></div>
-  </section>;
+  const [active, setActive] = useState<number | null>(0);
+
+  return (
+    <section id="studio" className="services-section" aria-labelledby="services-heading">
+      <div className="services-header">
+        <div className="section-eyebrow">
+          <span className="status-dot" />
+          <span>04 / 06 &middot; DISCIPLINES &amp; CAPABILITIES</span>
+        </div>
+        <div className="services-header-split">
+          <h2 id="services-heading" className="section-title">
+            Disciplines &amp;<br />
+            <em>Capabilities.</em>
+          </h2>
+          <p className="section-subtitle">
+            We operate at the convergence of strategic brand narrative, architectural interface design, and cutting-edge creative engineering.
+          </p>
+        </div>
+      </div>
+
+      <div className="capabilities-table">
+        {capabilities.map((cap, i) => {
+          const isActive = active === i;
+          return (
+            <div
+              key={cap.num}
+              className={`capability-row${isActive ? " is-active" : ""}`}
+              style={{
+                borderLeft: isActive ? `3px solid ${cap.color}` : "3px solid transparent",
+              }}
+              onMouseEnter={() => {
+                setActive(i);
+                soundFX.playHover();
+              }}
+              onClick={() => soundFX.playClick()}
+            >
+              <div className="cap-num" style={{ color: isActive ? cap.color : undefined }}>
+                {cap.num}
+              </div>
+
+              <div className="cap-main">
+                <div className="cap-badge-row">
+                  <span
+                    className="cap-pill"
+                    style={{
+                      background: cap.badgeBg,
+                      color: cap.color,
+                      borderColor: `${cap.color}40`,
+                    }}
+                  >
+                    {cap.badge}
+                  </span>
+                </div>
+
+                <h3 className="cap-title">
+                  {cap.title}
+                </h3>
+                <p className="cap-summary">{cap.summary}</p>
+                <div className="cap-tags">
+                  {cap.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="cap-tag"
+                      style={isActive ? { borderColor: `${cap.color}50`, color: "var(--text-primary)" } : undefined}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="cap-preview-col">
+                <div className="cap-thumb-wrap">
+                  <Image
+                    src={cap.previewImg}
+                    alt={cap.title}
+                    width={400}
+                    height={250}
+                    className="cap-thumb-img"
+                  />
+                </div>
+                <ArrowUpRight
+                  size={24}
+                  className="cap-arrow"
+                  style={{ color: isActive ? cap.color : undefined }}
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
 }

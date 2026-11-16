@@ -48,7 +48,9 @@ export function Sequence() {
         const context = surface.getContext("2d");
         if (!context) throw new Error("Canvas 2D context is unavailable");
         const draw = (position: number) => {
-          const image = frames[Math.min(frames.length - 1, Math.round(position * (frames.length - 1)))];
+          const index = Math.min(frames.length - 1, Math.max(0, Math.round(position * (frames.length - 1))));
+          const image = frames[index];
+          if (!image) return;
           context.clearRect(0, 0, surface.width, surface.height);
           context.drawImage(image, 0, 0, surface.width, surface.height);
         };

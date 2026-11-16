@@ -2,11 +2,30 @@
 
 import { useEffect, useRef } from "react";
 import { motionConfig } from "@/lib/motion";
+import { soundFX } from "@/lib/audio";
 
-const results = [
-  { number: 4, label: "selected client projects", note: "A few collaborations we're proud to share." },
-  { number: 447, label: "fragrances", note: "Brought together in the Scent Vault catalogue." },
-  { number: 68, label: "perfume houses", note: "Made easier to explore on Scent Vault." },
+const metrics = [
+  {
+    number: 4,
+    suffix: "",
+    label: "Selected Flagships",
+    note: "Bespoke digital platforms engineered from scratch.",
+    color: "#ea452b",
+  },
+  {
+    number: 447,
+    suffix: "+",
+    label: "Fragrances Archived",
+    note: "Structured catalog for Scent Vault digital archive.",
+    color: "#c59b4c",
+  },
+  {
+    number: 68,
+    suffix: "",
+    label: "Global Houses",
+    note: "Integrated into high-speed search and filtering.",
+    color: "#10b981",
+  },
 ] as const;
 
 export function Results() {
@@ -19,22 +38,67 @@ export function Results() {
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
       observer.disconnect();
+      soundFX.playHover();
       const start = performance.now();
       const counters = node.querySelectorAll<HTMLElement>("[data-count]");
       const tick = (now: number) => {
         const progress = Math.min((now - start) / motionConfig.counterDuration, 1);
         const eased = 1 - (1 - progress) ** 3;
-        counters.forEach((counter) => { counter.textContent = String(Math.round(Number(counter.dataset.count) * eased)).padStart(Number(counter.dataset.count) < 10 ? 2 : 1, "0"); });
+        counters.forEach((counter) => {
+          const target = Number(counter.dataset.count);
+          counter.textContent = String(Math.round(target * eased)).padStart(target < 10 ? 2 : 1, "0");
+        });
         if (progress < 1) frame = requestAnimationFrame(tick);
       };
       frame = requestAnimationFrame(tick);
-    }, { threshold: 0.3 });
+    }, { threshold: 0.25 });
     observer.observe(node);
-    return () => { observer.disconnect(); cancelAnimationFrame(frame); };
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
-  return <section ref={section} className="results-section section-pad" aria-labelledby="results-heading">
-    <div className="results-title"><p className="section-kicker"><span className="status-dot" /> A LITTLE PROOF</p><h2 id="results-heading">The details<br /><em>add up.</em></h2><p>Real work. Real details.<br />Nothing pulled out of thin air.</p></div>
-    <div className="results-grid">{results.map((result) => <article key={result.label}><strong data-count={result.number}>{String(result.number).padStart(result.number < 10 ? 2 : 1, "0")}</strong><h3>{result.label}</h3><p>{result.note}</p></article>)}</div>
-  </section>;
+  return (
+    <section ref={section} className="proof-section" aria-labelledby="proof-heading">
+      <div className="proof-container">
+        {/* Testimonial Quote Header */}
+        <div className="proof-quote-wrapper">
+          <div className="section-eyebrow">
+            <span className="status-dot" />
+            <span>05 / 06 &middot; CLIENT PERSPECTIVE</span>
+          </div>
+          <blockquote className="proof-blockquote">
+            &ldquo;Work done was quick and easy, process was very effective &mdash; very professional group of people working together to provide me a great experience for my business.&rdquo;
+          </blockquote>
+          <div className="proof-author">
+            <span className="proof-avatar" style={{ background: "rgba(197, 155, 76, 0.15)", color: "#9c7324", border: "1px solid rgba(197, 155, 76, 0.3)" }}>VS</span>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <strong>Vidhushi Sharma</strong>
+                <span className="proof-verified-pill">● VERIFIED CLIENT</span>
+              </div>
+              <span>Founder &middot; Scent Vault</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Metrics Row */}
+        <div className="proof-metrics-grid">
+          {metrics.map((item) => (
+            <div key={item.label} className="metric-cell" style={{ borderTop: `2px solid ${item.color}` }}>
+              <div className="metric-number-row" style={{ color: item.color }}>
+                <strong data-count={item.number} style={{ color: item.color }}>
+                  {String(item.number).padStart(item.number < 10 ? 2 : 1, "0")}
+                </strong>
+                {item.suffix && <span className="metric-suffix" style={{ color: item.color }}>{item.suffix}</span>}
+              </div>
+              <h3 className="metric-label">{item.label}</h3>
+              <p className="metric-note">{item.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
