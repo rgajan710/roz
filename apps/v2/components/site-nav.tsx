@@ -2,6 +2,7 @@
 
 import { Wordmark } from "@roz/brand/wordmark";
 import { ArrowUpRight, Menu, X, VolumeX } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { soundFX } from "@/lib/audio";
 
@@ -9,6 +10,8 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isAudioActive, setIsAudioActive] = useState(false);
+  const pathname = usePathname();
+  const sectionHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 40);
@@ -27,7 +30,7 @@ export function SiteNav() {
       <div className="nav-container">
         <a
           className="nav-logo"
-          href="#top"
+          href={sectionHref("#top")}
           aria-label="Roz studio home"
           onMouseEnter={() => soundFX.playHover()}
           onClick={() => soundFX.playClick()}
@@ -42,35 +45,35 @@ export function SiteNav() {
 
         <nav className={`nav-links${open ? " is-open" : ""}`} aria-label="Main navigation">
           <a
-            href="#about"
+            href={sectionHref("#about")}
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}
           >
             Studio
           </a>
           <a
-            href="#work"
+            href={sectionHref("#work")}
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}
           >
             Selected Work
           </a>
           <a
-            href="#studio"
+            href={sectionHref("#studio")}
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}
           >
             Capabilities
           </a>
           <a
-            href="#process"
+            href={sectionHref("#process")}
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}
           >
             Process
           </a>
           <a
-            href="#faq"
+            href={sectionHref("#faq")}
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}
           >
@@ -99,7 +102,7 @@ export function SiteNav() {
           </button>
 
           <a
-            href="#contact"
+            href={sectionHref("#contact")}
             className="nav-cta-btn"
             onClick={() => { setOpen(false); soundFX.playClick(); }}
             onMouseEnter={() => soundFX.playHover()}

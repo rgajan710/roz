@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, Compass, LayoutGrid, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { soundFX } from "@/lib/audio";
 
@@ -12,6 +12,8 @@ const capabilities = [
     badge: "STRATEGY & IDENTITY",
     color: "#3b82f6",
     badgeBg: "rgba(59, 130, 246, 0.1)",
+    icon: Compass,
+    stat: "Positioning to launch",
     summary: "Clear market positioning, creative direction, and visual identity systems that give your company a distinct, unforgettable presence.",
     tags: ["Positioning", "Visual Identity", "Typography Systems", "Art Direction"],
     previewImg: "/work/forme-flagship.webp",
@@ -22,6 +24,8 @@ const capabilities = [
     badge: "PRODUCT & UI/UX",
     color: "#8b5cf6",
     badgeBg: "rgba(139, 92, 246, 0.1)",
+    icon: LayoutGrid,
+    stat: "Systems that scale",
     summary: "Intuitive, high-converting digital interfaces engineered to captivate audiences and inspire confidence across every touchpoint.",
     tags: ["UI / UX Architecture", "Design Systems", "Interactive Prototyping", "Mobile First"],
     previewImg: "/work/sunroom-flagship.webp",
@@ -32,6 +36,8 @@ const capabilities = [
     badge: "3D & CREATIVE CODE",
     color: "#ea452b",
     badgeBg: "rgba(234, 69, 43, 0.1)",
+    icon: Code2,
+    stat: "60 FPS motion",
     summary: "Modern web applications powered by Next.js, Three.js, and custom GLSL shaders — delivering 60 FPS motion without compromising accessibility.",
     tags: ["Next.js & React", "Three.js & WebGL", "GSAP & Motion", "Performance Auditing"],
     previewImg: "/work/outland-flagship.webp",
@@ -42,6 +48,8 @@ const capabilities = [
     badge: "COMMERCE ARCHITECTURE",
     color: "#10b981",
     badgeBg: "rgba(16, 185, 129, 0.1)",
+    icon: ShoppingBag,
+    stat: "Global-ready commerce",
     summary: "Bespoke digital flagships and headless storefronts built for enduring reliability, frictionless checkout, and international scale.",
     tags: ["Headless Commerce", "Shopify Plus", "Catalog Optimization", "Speed Optimization"],
     previewImg: "/work/scent-vault-flagship.webp",
@@ -72,6 +80,7 @@ export function Services() {
       <div className="capabilities-table">
         {capabilities.map((cap, i) => {
           const isActive = active === i;
+          const Icon = cap.icon;
           return (
             <div
               key={cap.num}
@@ -85,8 +94,20 @@ export function Services() {
               }}
               onClick={() => soundFX.playClick()}
             >
-              <div className="cap-num" style={{ color: isActive ? cap.color : undefined }}>
-                {cap.num}
+              <div className="cap-index-col">
+                <div className="cap-num" style={{ color: isActive ? cap.color : undefined }}>
+                  {cap.num}
+                </div>
+                <div
+                  className="cap-icon-box"
+                  style={{
+                    color: cap.color,
+                    background: cap.badgeBg,
+                    borderColor: `${cap.color}30`,
+                  }}
+                >
+                  <Icon size={18} aria-hidden="true" />
+                </div>
               </div>
 
               <div className="cap-main">
@@ -100,6 +121,10 @@ export function Services() {
                     }}
                   >
                     {cap.badge}
+                  </span>
+                  <span className="cap-stat-pill" style={{ color: cap.color }}>
+                    <span className="spec-dot" style={{ background: cap.color }} />
+                    {cap.stat}
                   </span>
                 </div>
 

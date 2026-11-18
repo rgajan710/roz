@@ -16,11 +16,21 @@ export function TechMarquee() {
     <div className="tech-marquee-container" aria-label="Creative Engineering Stack">
       <div className="tech-marquee-track">
         {[...STACK_ITEMS, ...STACK_ITEMS, ...STACK_ITEMS].map((item, idx) => (
-          <div key={`${item.name}-${idx}`} className="tech-marquee-item">
-            <span className="marquee-dot" style={{ background: item.color, boxShadow: `0 0 8px ${item.color}80` }} />
+          <span
+            key={`${item.name}-${idx}`}
+            className="tech-marquee-item"
+            style={{
+              background: `${item.color}12`,
+              borderColor: `${item.color}30`,
+              color: item.color,
+            }}
+          >
+            <span
+              className="marquee-dot"
+              style={{ background: item.color, boxShadow: `0 0 8px ${item.color}80` }}
+            />
             <span className="marquee-text">{item.name}</span>
-            <span className="marquee-sep">✦</span>
-          </div>
+          </span>
         ))}
       </div>
     </div>

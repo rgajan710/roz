@@ -3,11 +3,14 @@
 import Link from "next/link";
 import { Wordmark } from "@roz/brand/wordmark";
 import { ArrowUpRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { soundFX } from "@/lib/audio";
 
 export function SiteFooter() {
   const [bengaluruTime, setBengaluruTime] = useState("");
+  const pathname = usePathname();
+  const sectionHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
   useEffect(() => {
     const updateTime = () => {
@@ -41,7 +44,7 @@ export function SiteFooter() {
         </div>
 
         <a
-          href="#top"
+          href={sectionHref("#top")}
           className="footer-back-top"
           onMouseEnter={() => soundFX.playHover()}
           onClick={() => soundFX.playClick()}
@@ -53,7 +56,7 @@ export function SiteFooter() {
       <div className="footer-main-grid">
         <div className="footer-brand-col">
           <a
-            href="#top"
+            href={sectionHref("#top")}
             className="footer-wordmark"
             aria-label="Roz studio, back to top"
             onMouseEnter={() => soundFX.playHover()}
@@ -77,12 +80,12 @@ export function SiteFooter() {
         <div className="footer-links-col">
           <h3 className="footer-col-title">Navigate</h3>
           <ul className="footer-link-list">
-            <li><a href="#about" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Studio</a></li>
-            <li><a href="#work" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Selected Work</a></li>
-            <li><a href="#studio" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Capabilities</a></li>
-            <li><a href="#process" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Process</a></li>
-            <li><a href="#faq" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>FAQ</a></li>
-            <li><a href="#contact" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Start a Project</a></li>
+            <li><a href={sectionHref("#about")} onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Studio</a></li>
+            <li><a href={sectionHref("#work")} onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Selected Work</a></li>
+            <li><a href={sectionHref("#studio")} onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Capabilities</a></li>
+            <li><a href={sectionHref("#process")} onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Process</a></li>
+            <li><a href={sectionHref("#faq")} onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>FAQ</a></li>
+            <li><a href={sectionHref("#contact")} onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Start a Project</a></li>
           </ul>
         </div>
 
@@ -102,6 +105,30 @@ export function SiteFooter() {
             <li><Link href="/privacy" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Privacy Policy</Link></li>
             <li><Link href="/terms" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>Terms of Use</Link></li>
           </ul>
+        </div>
+      </div>
+
+      <div className="footer-cta-strip">
+        <div className="footer-cta-copy">
+          <span className="footer-cta-eyebrow">
+            <span className="footer-india-badge" aria-hidden="true">
+              <span className="india-dot saffron" />
+              <span className="india-dot white" />
+              <span className="india-dot green" />
+            </span>
+            MADE IN INDIA &middot; WORKING WORLDWIDE
+          </span>
+          <h2 className="footer-cta-title">
+            Ready to build something <em>with pop?</em>
+          </h2>
+        </div>
+        <div className="footer-cta-actions">
+          <a href={sectionHref("#contact")} className="footer-cta-btn" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>
+            Start a project <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+          <a href="mailto:roz.enquire@gmail.com" className="footer-cta-ghost" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>
+            Email the studio
+          </a>
         </div>
       </div>
 

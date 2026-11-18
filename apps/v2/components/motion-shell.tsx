@@ -6,6 +6,23 @@ import { updateScrollProgress } from "@/lib/scroll";
 
 export function MotionShell() {
   const cursor = useRef<HTMLDivElement>(null);
+  const progressBar = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateBar = () => {
+      if (!progressBar.current) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? window.scrollY / max : 0;
+      progressBar.current.style.transform = `scaleX(${Math.min(Math.max(p, 0), 1)})`;
+    };
+    updateBar();
+    window.addEventListener("scroll", updateBar, { passive: true });
+    window.addEventListener("resize", updateBar);
+    return () => {
+      window.removeEventListener("scroll", updateBar);
+      window.removeEventListener("resize", updateBar);
+    };
+  }, []);
 
   useEffect(() => {
     if (!supportsRichMotion()) {
@@ -80,6 +97,7 @@ export function MotionShell() {
 
   return (
     <>
+      <div ref={progressBar} className="scroll-progress" aria-hidden="true" />
       <div ref={cursor} className="custom-cursor" aria-hidden="true" />
     </>
   );

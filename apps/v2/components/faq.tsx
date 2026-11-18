@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { soundFX } from "@/lib/audio";
 
 const faqs = [
@@ -105,6 +105,12 @@ export function FAQ() {
               <div className="faq-mini-tile" style={{ background: "linear-gradient(135deg,#3b82f622,#3b82f655)" }}><span>3D / Motion</span></div>
               <div className="faq-mini-tile" style={{ background: "linear-gradient(135deg,#ea452b22,#ea452b55)" }}><span>Commerce</span></div>
             </div>
+
+            <a href="#contact" className="faq-cta-card" onMouseEnter={() => soundFX.playHover()} onClick={() => soundFX.playClick()}>
+              <span className="faq-cta-eyebrow">STILL CURIOUS</span>
+              <strong>Have a project in mind?</strong>
+              <span className="faq-cta-link">Start a conversation <ArrowUpRight size={14} aria-hidden="true" /></span>
+            </a>
           </aside>
         </div>
       </div>

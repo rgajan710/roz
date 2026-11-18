@@ -51,6 +51,17 @@ export function Hero() {
     <section id="top" ref={heroRef} className="hero">
       <div className="hero-radial-glow" aria-hidden="true" />
 
+      <div className="hero-sticker" aria-hidden="true">
+        <span className="hero-sticker-flag">
+          <span className="india-dot saffron" />
+          <span className="india-dot white" />
+          <span className="india-dot green" />
+        </span>
+        <span className="hero-sticker-label">MADE IN INDIA</span>
+        <strong>BENGALURU</strong>
+        <span className="hero-sticker-sub">13.0° N · 77.6° E</span>
+      </div>
+
       <div ref={contentRef} className="hero-content">
         <div className="hero-inner">
           <div className="hero-eyebrow">
@@ -92,6 +103,25 @@ export function Hero() {
                   Start an Inquiry
                 </a>
               </Button>
+            </div>
+          </div>
+
+          <div className="hero-signal-ribbon" aria-label="Studio at a glance">
+            <div className="hero-signal-card" style={{ ["--signal" as string]: "#ea452b" }}>
+              <strong>04</strong>
+              <span>Flagships shipped</span>
+            </div>
+            <div className="hero-signal-card" style={{ ["--signal" as string]: "#c59b4c" }}>
+              <strong>447+</strong>
+              <span>Products archived</span>
+            </div>
+            <div className="hero-signal-card" style={{ ["--signal" as string]: "#10b981" }}>
+              <strong>68</strong>
+              <span>Global houses</span>
+            </div>
+            <div className="hero-signal-card" style={{ ["--signal" as string]: "#3b82f6" }}>
+              <strong>IN</strong>
+              <span>India-based, worldwide</span>
             </div>
           </div>
 

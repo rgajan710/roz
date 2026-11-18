@@ -20,6 +20,7 @@ const projects = [
     pill: "447+ FRAGRANCES · 68 HOUSES",
     description: "An extensive digital catalogue of luxury fragrance houses with olfactory mapping, real-time concentration search, and direct allocation commerce.",
     techStack: ["Next.js 16 App Router", "Olfactory Codex Engine", "Direct Allocation", "Turbopack 60 FPS"],
+    palette: ["#c59b4c", "#997843", "#1f1a16", "#f4efe6", "#8a5340"],
     image: "/work/scent-vault-flagship.webp",
     url: "https://perfvaultspidey.netlify.app/",
   },
@@ -36,6 +37,7 @@ const projects = [
     pill: "FIELD TESTED · GLOBAL COMMERCE",
     description: "A field-ready digital home for technical outdoor equipment, rugged survival goods, and modern expedition apparel engineered for harsh terrain.",
     techStack: ["Alpine Commerce Engine", "Topographical Grid", "Sub-50ms Search", "Field Tested UI"],
+    palette: ["#22c55e", "#15803d", "#0f172a", "#e7e5e4", "#f59e0b"],
     image: "/work/outland-flagship.webp",
     url: "https://celebrated-stroopwafel-1b72e2.netlify.app/",
   },
@@ -52,6 +54,7 @@ const projects = [
     pill: "CLEAN BEAUTY · SENSORY STOREFRONT",
     description: "An airy, sun-drenched digital storefront transforming everyday skincare into an elevated daily ritual of light, organic ingredients, and warmth.",
     techStack: ["Sensory Skincare Ritual", "Clean Botanical Micro-copy", "Tactile Interface", "High-Converting Storefront"],
+    palette: ["#f59e0b", "#fbbf24", "#fef3c7", "#78350f", "#ffffff"],
     image: "/work/sunroom-flagship.webp",
     url: "https://mellow-pudding-b10b58.netlify.app/",
   },
@@ -68,6 +71,7 @@ const projects = [
     pill: "BESPOKE LIVING · ENDURING OBJECTS",
     description: "A sculptural, tranquil e-commerce sanctuary for handcrafted homeware, bespoke ceramic furniture, and timeless interior objects designed to endure generations.",
     techStack: ["Architectural Living Layout", "Handcrafted Homeware Codex", "Spatial Ceramics", "Bespoke Curation"],
+    palette: ["#c25e3e", "#9a3412", "#1c1917", "#f5f5f4", "#d6cfc4"],
     image: "/work/forme-flagship.webp",
     url: "https://illustrious-beijinho-c72671.netlify.app/",
   },
@@ -171,7 +175,13 @@ function StickyProjectCard({
             >
               {project.id} &mdash; {project.category}
             </span>
-            <span className="project-year">{project.year}</span>
+            <div className="project-header-meta">
+              <span className="project-live-pill" style={{ color: project.color, borderColor: `${project.color}45`, background: `${project.color}12` }}>
+                <span className="project-live-dot" style={{ background: project.color }} />
+                LIVE
+              </span>
+              <span className="project-year">{project.year}</span>
+            </div>
           </div>
 
           <div>
@@ -202,6 +212,21 @@ function StickyProjectCard({
                 {spec}
               </span>
             ))}
+          </div>
+
+          <div className="project-palette-row">
+            <span className="project-palette-label">BRAND PALETTE</span>
+            <div className="project-palette-swatches">
+              {project.palette.map((swatch) => (
+                <span
+                  key={swatch}
+                  className="palette-swatch"
+                  style={{ background: swatch, borderColor: `${project.color}30` }}
+                  title={swatch}
+                />
+              ))}
+            </div>
+            <span className="project-palette-note">Bespoke visual system</span>
           </div>
 
           <div className="project-action-row">

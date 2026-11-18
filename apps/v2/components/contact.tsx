@@ -14,10 +14,10 @@ const DISCIPLINES = [
 ] as const;
 
 const BUDGETS = [
-  "$15,000 – $30,000",
-  "$30,000 – $60,000",
-  "$60,000+ Enterprise",
-  "To be calibrated",
+  "₹1.5L – ₹3L",
+  "₹3L – ₹6L",
+  "₹6L+ Enterprise",
+  "Open to guidance",
 ] as const;
 
 const TIMELINES = [
@@ -30,7 +30,7 @@ export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
   const [selectedDiscipline, setSelectedDiscipline] = useState<string>("E-Commerce Flagship");
-  const [selectedBudget, setSelectedBudget] = useState<string>("$30,000 – $60,000");
+  const [selectedBudget, setSelectedBudget] = useState<string>("₹3L – ₹6L");
   const [selectedTimeline, setSelectedTimeline] = useState<string>("✦ 8–12 Weeks (Flagship)");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -116,6 +116,21 @@ export function Contact() {
               <span>Full international timezone &amp; deployment coverage</span>
             </div>
           </div>
+
+          <div className="contact-quick-stats" aria-label="Studio quick facts">
+            <div className="contact-quick-stat" style={{ ["--quick" as string]: "#ea452b" }}>
+              <strong>24h</strong>
+              <span>Reply window</span>
+            </div>
+            <div className="contact-quick-stat" style={{ ["--quick" as string]: "#3b82f6" }}>
+              <strong>IST</strong>
+              <span>India timezone</span>
+            </div>
+            <div className="contact-quick-stat" style={{ ["--quick" as string]: "#10b981" }}>
+              <strong>2</strong>
+              <span>Q2 2026 slots</span>
+            </div>
+          </div>
         </div>
 
         <div className="contact-form-col">
@@ -147,7 +162,7 @@ export function Contact() {
 
             {/* Interactive Investment Tier Selector */}
             <div className="interactive-scope-block">
-              <span className="scope-group-label">02 // TARGET INVESTMENT:</span>
+              <span className="scope-group-label">02 // TARGET INVESTMENT &middot; INR:</span>
               <div className="scope-chip-wrap">
                 {BUDGETS.map((b) => {
                   const isSel = selectedBudget === b;
